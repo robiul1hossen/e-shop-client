@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Classic Oxford Button-Down",
+    "category": "Men",
+    "price": 45.0,
+    "description": "A timeless essential for every wardrobe. Crafted from 100% premium cotton with a crisp finish, featuring a structured collar and tailored fit perfect for business casual or weekend outings.",
+    "image": "https://images.unsplash.com/photo-1598033129183-c4f50c717658?q=80&w=800"
+  },
+  {
+    "id": 2,
+    "name": "Boho Floral Midi Dress",
+    "category": "Women",
+    "price": 65.99,
+    "description": "Flowy and feminine, this midi dress features a delicate floral print on recycled polyester. Designed with a cinched waist and flutter sleeves for an effortless transition from day to night.",
+    "image": "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=800"
+  },
+  {
+    "id": 3,
+    "name": "Kids' Organic Cotton Hoodie",
+    "category": "Kids",
+    "price": 29.5,
+    "description": "Ultra-soft and durable hoodie made for active play. Features a fleece-lined interior, ribbed cuffs, and a kangaroo pocket. Non-toxic dyes ensure safety for sensitive skin.",
+    "image": "https://images.unsplash.com/photo-1519232921916-751274d71e2e?q=80&w=800"
+  },
+  {
+    "id": 4,
+    "name": "Urban Tech Cargo Pants",
+    "category": "Men",
+    "price": 89.0,
+    "description": "Modern streetwear meets functionality. These cargo pants are made from water-resistant nylon with multiple tactical pockets and an adjustable drawstring hem for a tapered look.",
+    "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=800"
+  },
+  {
+    "id": 5,
+    "name": "Silk Satin Evening Blouse",
+    "category": "Women",
+    "price": 55.0,
+    "description": "Add a touch of luxury to your outfit. This shimmering satin blouse features a high neckline and elegant pearl buttons on the cuffs. Pairs beautifully with tailored trousers.",
+    "image": "https://images.unsplash.com/photo-1624378441864-6eda7eac51cb?q=80&w=800"
+  },
+  {
+    "id": 6,
+    "name": "Toddler Denim Overalls",
+    "category": "Kids",
+    "price": 34.99,
+    "description": "Classic vintage-style denim overalls with adjustable straps. Built to last through every adventure, featuring reinforced stitching and easy-snap closures for quick changes.",
+    "image": "https://images.unsplash.com/photo-1519457431-7571f018272b?q=80&w=800"
+  },
+  {
+    "id": 7,
+    "name": "Merino Wool Crewneck Sweater",
+    "category": "Men",
+    "price": 75.0,
+    "description": "Lightweight yet incredibly warm. This ethically sourced Merino wool sweater offers natural temperature regulation and a soft feel that never itches. A versatile layering piece.",
+    "image": "https://images.unsplash.com/photo-1614676471928-2ed0ad1061a4?q=80&w=800"
+  },
+  {
+    "id": 8,
+    "name": "High-Rise Athletic Leggings",
+    "category": "Women",
+    "price": 42.0,
+    "description": "Designed for performance and comfort. These squat-proof leggings feature 4-way stretch fabric, moisture-wicking technology, and a hidden waistband pocket for your essentials.",
+    "image": "https://images.unsplash.com/photo-1506629082925-629c8b922eb5?q=80&w=800"
+  },
+  {
+    "id": 9,
+    "name": "Graphic Print Cotton Tee",
+    "category": "Kids",
+    "price": 18.0,
+    "description": "Cool and comfortable daily wear. This 100% cotton tee features a playful hand-drawn illustration. It's pre-shrunk to maintain its shape even after multiple washes.",
+    "image": "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?q=80&w=800"
+  },
+  {
+    "id": 10,
+    "name": "Premium Leather Biker Jacket",
+    "category": "Men",
+    "price": 199.99,
+    "description": "The ultimate statement piece. Handcrafted from top-grain leather with quilted shoulder details and silver-tone hardware. This jacket develops a unique patina over time.",
+    "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=800"
+  }
+]
