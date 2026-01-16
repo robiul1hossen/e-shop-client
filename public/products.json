@@ -5,7 +5,30 @@
     "category": "Men",
     "price": 45.0,
     "description": "A timeless essential for every wardrobe. Crafted from 100% premium cotton with a crisp finish, featuring a structured collar and tailored fit perfect for business casual or weekend outings.",
-    "image": "https://images.unsplash.com/photo-1598033129183-c4f50c717658?q=80&w=800"
+    "image": "https://i.ibb.co.com/8L4yjV0d/cloth1.png",
+    "reviews": [
+      {
+        "reviewerName": "John Doe",
+        "reviewerImage": "https://i.pravatar.cc/150?u=1",
+        "reviewText": "Excellent fit and the fabric feels very premium.",
+        "date": "2025-12-01",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Alex Smith",
+        "reviewerImage": "https://i.pravatar.cc/150?u=2",
+        "reviewText": "Good for office wear, but needs ironing after every wash.",
+        "date": "2025-12-10",
+        "rating": 4
+      },
+      {
+        "reviewerName": "David W.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=3",
+        "reviewText": "Classy look. Highly recommend it.",
+        "date": "2025-12-15",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": 2,
@@ -13,7 +36,37 @@
     "category": "Women",
     "price": 65.99,
     "description": "Flowy and feminine, this midi dress features a delicate floral print on recycled polyester. Designed with a cinched waist and flutter sleeves for an effortless transition from day to night.",
-    "image": "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=800"
+    "image": "https://i.ibb.co.com/23FKrCzs/cloth2.png",
+    "reviews": [
+      {
+        "reviewerName": "Sarah K.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=4",
+        "reviewText": "Love the floral pattern! Very comfortable.",
+        "date": "2025-11-20",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Emily R.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=5",
+        "reviewText": "The waist is a bit tight, but the length is perfect.",
+        "date": "2025-11-25",
+        "rating": 4
+      },
+      {
+        "reviewerName": "Jessica M.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=6",
+        "reviewText": "Wore it to a wedding and got many compliments.",
+        "date": "2025-12-05",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Sophia L.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=7",
+        "reviewText": "Beautiful dress, true to size.",
+        "date": "2025-12-12",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": 3,
@@ -21,7 +74,30 @@
     "category": "Kids",
     "price": 29.5,
     "description": "Ultra-soft and durable hoodie made for active play. Features a fleece-lined interior, ribbed cuffs, and a kangaroo pocket. Non-toxic dyes ensure safety for sensitive skin.",
-    "image": "https://images.unsplash.com/photo-1519232921916-751274d71e2e?q=80&w=800"
+    "image": "https://i.ibb.co.com/CKMQ0WLC/cloth3.png",
+    "reviews": [
+      {
+        "reviewerName": "Mike T.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=8",
+        "reviewText": "My son loves it! Very soft inside.",
+        "date": "2025-10-15",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Linda P.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=9",
+        "reviewText": "Great quality and washes well.",
+        "date": "2025-11-02",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Chris G.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=10",
+        "reviewText": "A bit thinner than expected but still good.",
+        "date": "2025-11-20",
+        "rating": 3
+      }
+    ]
   },
   {
     "id": 4,
@@ -29,7 +105,30 @@
     "category": "Men",
     "price": 89.0,
     "description": "Modern streetwear meets functionality. These cargo pants are made from water-resistant nylon with multiple tactical pockets and an adjustable drawstring hem for a tapered look.",
-    "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=800"
+    "image": "https://i.ibb.co.com/sphzcmGd/cloth4.png",
+    "reviews": [
+      {
+        "reviewerName": "Mark J.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=11",
+        "reviewText": "Best cargo pants I've owned. Pockets are very useful.",
+        "date": "2025-12-20",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Ryan B.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=12",
+        "reviewText": "Stylish and functional. Great for rainy days.",
+        "date": "2025-12-22",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Kevin S.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=13",
+        "reviewText": "A bit pricey but the material is top-notch.",
+        "date": "2025-12-28",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": 5,
@@ -37,7 +136,37 @@
     "category": "Women",
     "price": 55.0,
     "description": "Add a touch of luxury to your outfit. This shimmering satin blouse features a high neckline and elegant pearl buttons on the cuffs. Pairs beautifully with tailored trousers.",
-    "image": "https://images.unsplash.com/photo-1624378441864-6eda7eac51cb?q=80&w=800"
+    "image": "https://i.ibb.co.com/R44BT8mZ/cloth5.png",
+    "reviews": [
+      {
+        "reviewerName": "Olivia H.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=14",
+        "reviewText": "The pearl buttons are a lovely touch.",
+        "date": "2025-11-12",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Grace D.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=15",
+        "reviewText": "Fabric is delicate but looks very expensive.",
+        "date": "2025-11-18",
+        "rating": 4
+      },
+      {
+        "reviewerName": "Mia F.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=16",
+        "reviewText": "Perfect for evening dinners.",
+        "date": "2025-11-25",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Chloe B.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=17",
+        "reviewText": "Beautiful fit and color.",
+        "date": "2025-12-01",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": 6,
@@ -45,7 +174,30 @@
     "category": "Kids",
     "price": 34.99,
     "description": "Classic vintage-style denim overalls with adjustable straps. Built to last through every adventure, featuring reinforced stitching and easy-snap closures for quick changes.",
-    "image": "https://images.unsplash.com/photo-1519457431-7571f018272b?q=80&w=800"
+    "image": "https://i.ibb.co.com/tMrn1myV/cloth6.png",
+    "reviews": [
+      {
+        "reviewerName": "Emma W.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=18",
+        "reviewText": "Super cute and easy to put on.",
+        "date": "2025-09-30",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Noah Z.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=19",
+        "reviewText": "Sturdy material for crawling toddlers.",
+        "date": "2025-10-10",
+        "rating": 4
+      },
+      {
+        "reviewerName": "Isabella V.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=20",
+        "reviewText": "Great quality denim.",
+        "date": "2025-10-25",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": 7,
@@ -53,7 +205,37 @@
     "category": "Men",
     "price": 75.0,
     "description": "Lightweight yet incredibly warm. This ethically sourced Merino wool sweater offers natural temperature regulation and a soft feel that never itches. A versatile layering piece.",
-    "image": "https://images.unsplash.com/photo-1614676471928-2ed0ad1061a4?q=80&w=800"
+    "image": "https://i.ibb.co.com/wZvbM7yS/cloth7.png",
+    "reviews": [
+      {
+        "reviewerName": "Liam N.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=21",
+        "reviewText": "Truly non-itchy wool. Very impressed.",
+        "date": "2025-11-05",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Ethan C.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=22",
+        "reviewText": "Warm but lightweight. Perfect for layering.",
+        "date": "2025-11-15",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Mason K.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=23",
+        "reviewText": "The fit is slightly slim, but looks good.",
+        "date": "2025-11-30",
+        "rating": 4
+      },
+      {
+        "reviewerName": "James U.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=24",
+        "reviewText": "High quality wool. Worth the price.",
+        "date": "2025-12-05",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": 8,
@@ -61,7 +243,30 @@
     "category": "Women",
     "price": 42.0,
     "description": "Designed for performance and comfort. These squat-proof leggings feature 4-way stretch fabric, moisture-wicking technology, and a hidden waistband pocket for your essentials.",
-    "image": "https://images.unsplash.com/photo-1506629082925-629c8b922eb5?q=80&w=800"
+    "image": "https://i.ibb.co.com/Hfy4smRq/cloth8.png",
+    "reviews": [
+      {
+        "reviewerName": "Ava S.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=25",
+        "reviewText": "Squat-proof confirmed! Great for gym.",
+        "date": "2025-12-10",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Charlotte G.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=26",
+        "reviewText": "The hidden pocket is perfect for my keys.",
+        "date": "2025-12-14",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Amelia X.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=27",
+        "reviewText": "Very comfortable and moisture-wicking.",
+        "date": "2025-12-20",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": 9,
@@ -69,7 +274,30 @@
     "category": "Kids",
     "price": 18.0,
     "description": "Cool and comfortable daily wear. This 100% cotton tee features a playful hand-drawn illustration. It's pre-shrunk to maintain its shape even after multiple washes.",
-    "image": "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?q=80&w=800"
+    "image": "https://i.ibb.co.com/bcr3p0S/cloth9.png",
+    "reviews": [
+      {
+        "reviewerName": "Harper E.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=28",
+        "reviewText": "Fun design, my kid loves it.",
+        "date": "2025-08-20",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Evelyn Q.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=29",
+        "reviewText": "Good quality cotton.",
+        "date": "2025-09-05",
+        "rating": 4
+      },
+      {
+        "reviewerName": "Abigail J.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=30",
+        "reviewText": "Washes well without fading.",
+        "date": "2025-09-15",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": 10,
@@ -77,6 +305,43 @@
     "category": "Men",
     "price": 199.99,
     "description": "The ultimate statement piece. Handcrafted from top-grain leather with quilted shoulder details and silver-tone hardware. This jacket develops a unique patina over time.",
-    "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=800"
+    "image": "https://i.ibb.co.com/0jGNKGYk/cloth10.png",
+    "reviews": [
+      {
+        "reviewerName": "Logan Y.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=31",
+        "reviewText": "Stunning jacket. The leather is premium.",
+        "date": "2025-12-01",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Jackson O.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=32",
+        "reviewText": "Heavy and warm. Fits like a glove.",
+        "date": "2025-12-08",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Sebastian T.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=33",
+        "reviewText": "The hardware feels very solid.",
+        "date": "2025-12-15",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Lucas F.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=34",
+        "reviewText": "Expensive, but it's a lifetime piece.",
+        "date": "2025-12-25",
+        "rating": 5
+      },
+      {
+        "reviewerName": "Jack H.",
+        "reviewerImage": "https://i.pravatar.cc/150?u=35",
+        "reviewText": "Got lots of compliments already.",
+        "date": "2025-12-30",
+        "rating": 5
+      }
+    ]
   }
 ]

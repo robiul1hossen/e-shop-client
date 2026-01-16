@@ -32,7 +32,7 @@ const slides = [
 
 export default function HeroBanner() {
   return (
-    <div className="relative w-full h-[65vh]  overflow-hidden">
+    <div className="mb-12 relative w-full h-[65vh]  overflow-hidden">
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         effect="fade"

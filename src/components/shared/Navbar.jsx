@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -5,13 +6,16 @@ const Navbar = () => {
   const links = (
     <>
       <Link href="/">
-        <li className="mx-2 font-medium">Home</li>
+        <li className="mx-2 font-medium">HOME</li>
+      </Link>
+      <Link href="/products">
+        <li className="mx-2 font-medium">PRODUCTS</li>
       </Link>
       <Link href="/">
-        <li className="mx-2 font-medium">All Product</li>
+        <li className="mx-2 font-medium">ABOUT</li>
       </Link>
       <Link href="/">
-        <li className="mx-2 font-medium">About</li>
+        <li className="mx-2 font-medium">CONTACT</li>
       </Link>
     </>
   );
@@ -37,17 +41,32 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-gray-600 font-medium text-sm">
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">E-SHOP</a>
+        <Link href="/">
+          <Image
+            width={100}
+            height={100}
+            className="w-full h-12 px-5"
+            src="/logo-dark.png"
+            alt=""
+          />
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
+        <ul className="menu menu-horizontal px-1 text-gray-600 font-medium text-sm">
+          {links}
+        </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <Link href="/login" className="btn">
+          Login
+        </Link>
+        <Link href="/register" className="btn">
+          Register
+        </Link>
       </div>
     </div>
   );
