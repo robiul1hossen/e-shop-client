@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "Arif Ahmed",
+    "image": "https://i.pravatar.cc/150?u=a1",
+    "text": "Thread & Co. has the cleanest UI I've seen for a clothing store. The category filtering is super fast, making it easy to find exactly what I need without scrolling for hours.",
+    "date": "2026-01-05",
+    "rating": 5
+  },
+  {
+    "id": 2,
+    "name": "Sara Kabir",
+    "image": "https://i.pravatar.cc/150?u=s2",
+    "text": "I love how the website looks on my phone. The mobile responsiveness is top-notch, and the checkout process is very smooth. Shopping for dresses has never been this easy!",
+    "date": "2026-01-08",
+    "rating": 5
+  },
+  {
+    "id": 3,
+    "name": "Rahat Karim",
+    "image": "https://i.pravatar.cc/150?u=r3",
+    "text": "The high-quality product images and detailed descriptions help me decide quickly. It's rare to find a site that gives so much information about the fabric and fit.",
+    "date": "2026-01-10",
+    "rating": 4
+  },
+  {
+    "id": 4,
+    "name": "Nabila Islam",
+    "image": "https://i.pravatar.cc/150?u=n4",
+    "text": "As a busy mom, I appreciate how organized the Kids' section is. I can filter by age and size effortlessly. Thread & Co. saved me so much time today!",
+    "date": "2026-01-12",
+    "rating": 5
+  },
+  {
+    "id": 5,
+    "name": "Tanvir Hasan",
+    "image": "https://i.pravatar.cc/150?u=t5",
+    "text": "The search functionality is actually useful. Unlike other sites, when I search for 'Cargo', I get actual cargo pants. Very reliable platform.",
+    "date": "2026-01-14",
+    "rating": 4
+  },
+  {
+    "id": 6,
+    "name": "Meherun Nesa",
+    "image": "https://i.pravatar.cc/150?u=m6",
+    "text": "I really like the 'Related Products' feature. It helped me find a matching blouse for the trousers I was buying. Great user experience design!",
+    "date": "2026-01-15",
+    "rating": 5
+  },
+  {
+    "id": 7,
+    "name": "Zayan Malik",
+    "image": "https://i.pravatar.cc/150?u=z7",
+    "text": "Site speed is impressive. Pages load instantly, which makes the browsing experience very enjoyable. Keep it up, Thread & Co.!",
+    "date": "2026-01-16",
+    "rating": 5
+  },
+  {
+    "id": 8,
+    "name": "Fatima Zahra",
+    "image": "https://i.pravatar.cc/150?u=f8",
+    "text": "The login and registration were straightforward. I also appreciate the security features when saving my address. Very professional site.",
+    "date": "2026-01-17",
+    "rating": 4
+  }
+]

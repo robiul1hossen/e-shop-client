@@ -109,7 +109,7 @@ const ProductDetails = () => {
         </div>
       </div>
       {/* reviews */}
-      <div className="py-8 text-3xl text-center">
+      <div className="pt-8 text-3xl text-center md:text-start">
         <Title text1={"PRODUCT"} text2={"REVIEWS"} />
       </div>
       {revs.map((review, i) => (
