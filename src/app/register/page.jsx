@@ -1,10 +1,12 @@
 "use client";
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 
 const RegisterPage = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -14,11 +16,14 @@ const RegisterPage = () => {
   const handleRegister = async (data) => {
     console.log(data);
     await axios
-      .post("http://localhost:3001/user", data, {
+      .post("http://localhost:3001/register", data, {
         withCredentials: true,
       })
       .then((res) => {
         console.log(res.data);
+        if (res.data.success) {
+          router.push("/addProduct");
+        }
       })
       .catch((error) => {
         console.log(error);

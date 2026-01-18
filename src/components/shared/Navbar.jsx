@@ -1,8 +1,33 @@
+"use client";
+
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const Navbar = () => {
+  const router = useRouter();
+  const handleLogout = async () => {
+    console.log("clicked");
+    await axios
+      .post(
+        "http://localhost:3001/logout",
+        {},
+        {
+          withCredentials: true,
+        },
+      )
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.success) {
+          router.push("/login");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const links = (
     <>
       <Link href="/">
@@ -67,6 +92,11 @@ const Navbar = () => {
         <Link href="/register" className="btn">
           Register
         </Link>
+        <button
+          onClick={handleLogout}
+          className="btn pointer-events-auto opacity-100 relative z-999">
+          Logout
+        </button>
       </div>
     </div>
   );
