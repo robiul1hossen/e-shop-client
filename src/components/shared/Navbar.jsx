@@ -1,12 +1,15 @@
 "use client";
 
+import { AuthContext } from "@/context/AuthContext";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import { use } from "react";
 
 const Navbar = () => {
+  const { user } = use(AuthContext);
+  console.log(user);
   const router = useRouter();
   const handleLogout = async () => {
     console.log("clicked");
