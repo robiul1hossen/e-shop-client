@@ -1,0 +1,50 @@
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  width: 300px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+.review-card {
+  background: #f1f5f9;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  min-height: 250px; /* Ensures all cards look uniform */
+  border: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.card-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Coverflow specific shadow and depth styling */
+.swiper-slide-shadow-left,
+.swiper-slide-shadow-right {
+  border-radius: 20px;
+}
+
+.swiper-pagination-bullet-active {
+  background: #2563eb !important; /* Blue color for Thread & Co theme */
+  width: 20px !important;
+  border-radius: 5px !important;
+}
