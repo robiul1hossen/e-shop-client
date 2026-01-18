@@ -12,10 +12,10 @@ const Navbar = () => {
   console.log(user);
   const router = useRouter();
   const handleLogout = async () => {
-    console.log("clicked");
+    // console.log("clicked");
     await axios
       .post(
-        "http://localhost:3001/logout",
+        `${process.env.NEXT_PUBLIC_DOMAIN}/logout`,
         {},
         {
           withCredentials: true,
@@ -38,6 +38,9 @@ const Navbar = () => {
       </Link>
       <Link href="/products">
         <li className="mx-2 font-medium">PRODUCTS</li>
+      </Link>
+      <Link href="/addProduct">
+        <li className="mx-2 font-medium">ADD PRODUCT</li>
       </Link>
       <Link href="/">
         <li className="mx-2 font-medium">ABOUT</li>

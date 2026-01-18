@@ -18,11 +18,11 @@ const ProductDetails = () => {
     const loadProductDetails = async () => {
       const res = await axios.get("/products.json");
       const singleProduct = res.data.find(
-        (product) => Number(product.id) === Number(id)
+        (product) => Number(product.id) === Number(id),
       );
       setProduct(singleProduct);
       const relatedProducts = res.data.filter(
-        (item) => item.category === singleProduct.category
+        (item) => item.category === singleProduct.category,
       );
       setRelated(relatedProducts);
       setLoading(false);
@@ -34,7 +34,7 @@ const ProductDetails = () => {
   }, [id]);
 
   const revs = product?.reviews?.map((rev) => rev) || [];
-  console.log(revs);
+  // console.log(revs);
 
   const { image, name, category, price, description } = product;
   if (loading) {

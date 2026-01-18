@@ -10,7 +10,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const loadUser = async () => {
       try {
-        const res = await axios.get("http://localhost:3001/me", {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/me`, {
           withCredentials: true,
         });
         setUser(res.data);
@@ -22,6 +22,7 @@ const AuthProvider = ({ children }) => {
     };
     loadUser();
   }, []);
+  console.log("provider", process.env.NEXT_PUBLIC_DOMAIN);
   const userInfo = { user };
   return <AuthContext value={userInfo}>{children}</AuthContext>;
 };

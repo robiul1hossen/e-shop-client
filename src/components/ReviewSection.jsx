@@ -60,7 +60,7 @@ const ReviewSection = () => {
         className="mySwiper">
         {reviews.map((review) => (
           <SwiperSlide key={review.id} className="review-card">
-            {console.log(review)}
+            {/* {console.log(review)} */}
             <div className="card-content">
               {/* Upper Section: Quote Icon & Rating */}
               <div className="flex justify-between items-start mb-4">

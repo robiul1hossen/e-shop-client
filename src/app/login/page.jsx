@@ -15,7 +15,7 @@ const LoginPage = () => {
   const handleLogin = async (data) => {
     console.log(data);
     await axios
-      .post("http://localhost:3001/login", data, {
+      .post(`${process.env.NEXT_PUBLIC_DOMAIN}/login`, data, {
         withCredentials: true,
       })
       .then((res) => {

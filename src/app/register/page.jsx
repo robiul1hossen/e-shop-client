@@ -14,9 +14,9 @@ const RegisterPage = () => {
     formState: { errors },
   } = useForm();
   const handleRegister = async (data) => {
-    console.log(data);
+    console.log(process.env.NEXT_PUBLIC_DOMAIN);
     await axios
-      .post("http://localhost:3001/register", data, {
+      .post(`${process.env.NEXT_PUBLIC_DOMAIN}/register`, data, {
         withCredentials: true,
       })
       .then((res) => {
