@@ -1,4 +1,5 @@
 "use client";
+import { useAuth } from "@/hooks/useAuth";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -6,6 +7,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 const LoginPage = () => {
+  const { setUser } = useAuth();
   const router = useRouter();
   const {
     register,
@@ -13,14 +15,15 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
   const handleLogin = async (data) => {
-    console.log(data);
     await axios
       .post(`${process.env.NEXT_PUBLIC_DOMAIN}/login`, data, {
         withCredentials: true,
       })
       .then((res) => {
         console.log(res.data);
+
         if (res.data.success) {
+          setUser(res.data.user);
           router.push("/addProduct");
         }
       })

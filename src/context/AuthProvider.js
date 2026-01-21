@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
   useEffect(() => {
     const loadUser = async () => {
       try {
@@ -22,8 +24,27 @@ const AuthProvider = ({ children }) => {
     };
     loadUser();
   }, []);
-  console.log("provider", process.env.NEXT_PUBLIC_DOMAIN);
-  const userInfo = { user };
+  const logout = async () => {
+    try {
+      await axios
+        .post(
+          `${process.env.NEXT_PUBLIC_DOMAIN}/logout`,
+          {},
+          {
+            withCredentials: true,
+          },
+        )
+        .then((res) => {
+          if (res.data.success) {
+            setUser(null);
+            router.push("/login");
+          }
+        });
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+  const userInfo = { user, setUser, loading, setLoading, logout };
   return <AuthContext value={userInfo}>{children}</AuthContext>;
 };
 

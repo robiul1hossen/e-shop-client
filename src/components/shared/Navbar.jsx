@@ -1,36 +1,13 @@
 "use client";
 
-import { AuthContext } from "@/context/AuthContext";
-import axios from "axios";
+import { useAuth } from "@/hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { use } from "react";
 
 const Navbar = () => {
-  const { user } = use(AuthContext);
+  const { user, loading, logout } = useAuth();
   console.log(user);
-  const router = useRouter();
-  const handleLogout = async () => {
-    // console.log("clicked");
-    await axios
-      .post(
-        `${process.env.NEXT_PUBLIC_DOMAIN}/logout`,
-        {},
-        {
-          withCredentials: true,
-        },
-      )
-      .then((res) => {
-        console.log(res.data);
-        if (res.data.success) {
-          router.push("/login");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+
   const links = (
     <>
       <Link href="/">
@@ -92,17 +69,21 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link href="/login" className="btn">
-          Login
-        </Link>
-        <Link href="/register" className="btn">
-          Register
-        </Link>
-        <button
-          onClick={handleLogout}
-          className="btn pointer-events-auto opacity-100 relative z-999">
-          Logout
-        </button>
+        {user ? (
+          <>
+            <button
+              onClick={logout}
+              className="btn pointer-events-auto opacity-100 relative z-999">
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link href="/login" className="btn">
+              Login
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );

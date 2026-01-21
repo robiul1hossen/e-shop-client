@@ -14,7 +14,6 @@ const RegisterPage = () => {
     formState: { errors },
   } = useForm();
   const handleRegister = async (data) => {
-    console.log(process.env.NEXT_PUBLIC_DOMAIN);
     await axios
       .post(`${process.env.NEXT_PUBLIC_DOMAIN}/register`, data, {
         withCredentials: true,
