@@ -8,23 +8,26 @@ import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Rating from "react-rating";
 import { FaRegThumbsDown, FaRegThumbsUp } from "react-icons/fa";
+import { useAuth } from "@/hooks/useAuth";
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const { user } = useAuth();
   const [product, setProduct] = useState({});
   const [related, setRelated] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedSize, setSelectedSize] = useState("");
   useEffect(() => {
     const loadProductDetails = async () => {
-      const res = await axios.get("/products.json");
-      const singleProduct = res.data.find(
-        (product) => Number(product.id) === Number(id),
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_DOMAIN}/product/${id}`,
       );
-      setProduct(singleProduct);
-      const relatedProducts = res.data.filter(
-        (item) => item.category === singleProduct.category,
+      setProduct(res.data);
+
+      const result = await axios.get(
+        `${process.env.NEXT_PUBLIC_DOMAIN}/product?category=${res.data?.category}`,
       );
-      setRelated(relatedProducts);
+      setRelated(result.data);
       setLoading(false);
     };
 
@@ -33,8 +36,28 @@ const ProductDetails = () => {
     }
   }, [id]);
 
+  console.log(user);
+  const handleAddToCart = async () => {
+    if (!selectedSize) {
+      return alert("please select a size");
+    }
+    const productData = {
+      name: user.name,
+      email: user.email,
+      productId: id,
+      size: selectedSize,
+      quantity: 1,
+    };
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_DOMAIN}/product/cart`,
+      productData,
+    );
+    if (res.data.modifiedCount || res.data.insertedId) {
+      alert("product added to cart");
+    }
+  };
+
   const revs = product?.reviews?.map((rev) => rev) || [];
-  // console.log(revs);
 
   const { image, name, category, price, description } = product;
   if (loading) {
@@ -69,24 +92,19 @@ const ProductDetails = () => {
             <p className="text-2xl font-bold mt-4">${price}</p>
             <p className="mt-4">Select Size</p>
             <div className="flex gap-1 mt-3">
-              <button className="btn btn-md text-base font-normal bg-slate-100">
-                S
-              </button>
-              <button className="btn btn-md text-base font-normal bg-slate-100">
-                M
-              </button>
-              <button className="btn btn-md text-base font-normal bg-slate-100">
-                L
-              </button>
-              <button className="btn btn-md text-base font-normal bg-slate-100">
-                XL
-              </button>
-              <button className="btn btn-md text-base font-normal bg-slate-100">
-                XXL
-              </button>
+              {product?.size?.map((item) => (
+                <button
+                  key={item}
+                  onClick={() => setSelectedSize(item)}
+                  className={`btn btn-md text-base font-normal bg-slate-100 ${selectedSize === item ? "border border-black" : ""}`}>
+                  {item}
+                </button>
+              ))}
             </div>
             <div>
-              <button className="text-white bg-black px-6 py-2 mt-10 cursor-pointer">
+              <button
+                onClick={handleAddToCart}
+                className="text-white bg-black px-6 py-2 mt-10 cursor-pointer">
                 ADD TO CART
               </button>
             </div>

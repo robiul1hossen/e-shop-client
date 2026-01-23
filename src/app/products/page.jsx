@@ -55,7 +55,8 @@ const Products = () => {
       </div>
       <div>
         <form onSubmit={handleSubmit}>
-          <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
+          <fieldset className="fieldset bg-base-100 border-base-300 rounded-box border p-4 w-full">
+            <h2 className="font-bold text-xl">Filter By Category</h2>
             <label className="label">
               <input
                 onChange={handleCatChange}
@@ -112,7 +113,7 @@ const Products = () => {
       </div>
       <div className=" px-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {foundData.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product._id} product={product} />
         ))}
       </div>
     </div>

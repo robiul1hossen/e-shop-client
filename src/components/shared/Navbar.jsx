@@ -1,13 +1,26 @@
 "use client";
 
 import { useAuth } from "@/hooks/useAuth";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const { user, loading, logout } = useAuth();
-  console.log(user);
+  const [cartCount, setCartCount] = useState(0);
 
+  useEffect(() => {
+    const loadCart = async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_DOMAIN}/cart/${user?.email}`,
+      );
+      setCartCount(res.data);
+    };
+    if (user) {
+      loadCart();
+    }
+  }, [user]);
   const links = (
     <>
       <Link href="/">
@@ -27,6 +40,7 @@ const Navbar = () => {
       </Link>
     </>
   );
+
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -71,11 +85,45 @@ const Navbar = () => {
       <div className="navbar-end">
         {user ? (
           <>
-            <button
-              onClick={logout}
-              className="btn pointer-events-auto opacity-100 relative z-999">
-              Logout
-            </button>
+            <div className="flex gap-4 items-center">
+              <div className="group relative py-2">
+                <Image
+                  height={18}
+                  width={18}
+                  src="/profile.png"
+                  className="cursor-pointer"
+                  alt="Profile"
+                />
+
+                <div className="hidden group-hover:flex flex-col absolute right-0 top-full -mt-1 w-40 bg-white border border-gray-200 shadow-lg rounded-md overflow-hidden z-999">
+                  <button className="px-4 py-2 text-left hover:bg-gray-100 text-sm">
+                    Profile
+                  </button>
+                  <button className="px-4 py-2 text-left hover:bg-gray-100 text-sm">
+                    My Orders
+                  </button>
+                  <hr />
+                  <button
+                    onClick={logout}
+                    className="px-4 py-2 text-left hover:bg-red-50 text-red-600 text-sm font-medium">
+                    Logout
+                  </button>
+                </div>
+              </div>
+
+              <div className="relative">
+                <Image
+                  height={18}
+                  width={18}
+                  src="/cart.png"
+                  className=""
+                  alt="Cart"
+                />
+                <div className="bg-black text-white rounded-full p-2 h-2 w-2 text-xs flex items-center justify-center text-center absolute top-2.5 left-1.75 cursor-pointer">
+                  <span>{cartCount.length}</span>
+                </div>
+              </div>
+            </div>
           </>
         ) : (
           <>

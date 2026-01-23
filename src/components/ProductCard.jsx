@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
   return (
     <Link
       className="text-gray-700 cursor-pointer"
-      href={`/products/${product.id}`}>
+      href={`/products/${product._id}`}>
       <div className="md:overflow-hidden">
         <Image
           width={100}
