@@ -29,9 +29,7 @@ const Navbar = () => {
       <Link href="/products">
         <li className="mx-2 font-medium">PRODUCTS</li>
       </Link>
-      <Link href="/addProduct">
-        <li className="mx-2 font-medium">ADD PRODUCT</li>
-      </Link>
+
       <Link href="/">
         <li className="mx-2 font-medium">ABOUT</li>
       </Link>
@@ -95,18 +93,22 @@ const Navbar = () => {
                   alt="Profile"
                 />
 
-                <div className="hidden group-hover:flex flex-col absolute right-0 top-full -mt-1 w-40 bg-white border border-gray-200 shadow-lg rounded-md overflow-hidden z-999">
-                  <button className="px-4 py-2 text-left hover:bg-gray-100 text-sm">
-                    Profile
-                  </button>
-                  <button className="px-4 py-2 text-left hover:bg-gray-100 text-sm">
-                    My Orders
-                  </button>
+                <div className="p-4 hidden group-hover:flex flex-col absolute right-0 top-full -mt-1 w-40 bg-white border border-gray-200 shadow-lg rounded-md overflow-hidden z-999">
+                  <Link href="/dashboard">
+                    <li className="mx-2 font-medium list-none text-gray-500 mb-2">
+                      DASHBOARD
+                    </li>
+                  </Link>
+                  <Link href="/profile">
+                    <li className="mx-2 font-medium list-none text-gray-500 mb-2">
+                      PROFILE
+                    </li>
+                  </Link>
                   <hr />
                   <button
                     onClick={logout}
                     className="px-4 py-2 text-left hover:bg-red-50 text-red-600 text-sm font-medium">
-                    Logout
+                    LOGOUT
                   </button>
                 </div>
               </div>

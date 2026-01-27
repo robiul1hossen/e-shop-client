@@ -16,15 +16,17 @@ const AddProduct = () => {
   };
   return (
     <div>
-      <div className="py-8 text-3xl text-center">
+      <div className="py-8 text-xs sm:text-sm md:text-3xl text-center">
         <Title text1={"ADD"} text2={"PRODUCT"} />
-        <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
+        <p className=" w-full md:w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum
           impedit perspiciatis vero dolor, nesciunt cumque vitae
         </p>
       </div>
-      <div className="flex items-center justify-center ">
-        <form onSubmit={handleSubmit(handleAddProduct)} className=" w-1/4">
+      <div className="flex items-center justify-center w-full ">
+        <form
+          onSubmit={handleSubmit(handleAddProduct)}
+          className=" w-full md:w-1/2">
           <fieldset className="fieldset w-full">
             <label className="label">Product Name</label>
             <input
