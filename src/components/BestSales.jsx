@@ -10,7 +10,7 @@ const BestSales = () => {
 
   useEffect(() => {
     axios
-      .get("/products.json")
+      .get(`${process.env.NEXT_PUBLIC_DOMAIN}/products`)
       .then((res) => {
         setProducts(res.data);
       })

@@ -9,34 +9,38 @@ import React, { useEffect, useState } from "react";
 import Rating from "react-rating";
 import { FaRegThumbsDown, FaRegThumbsUp } from "react-icons/fa";
 import { useAuth } from "@/hooks/useAuth";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const { user } = useAuth();
-  const [product, setProduct] = useState({});
+  // const [product, setProduct] = useState({});
   const [related, setRelated] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedSize, setSelectedSize] = useState("");
-  useEffect(() => {
-    const loadProductDetails = async () => {
+  const queryClient = useQueryClient();
+
+  const { data: product = {}, refetch } = useQuery({
+    queryKey: ["productDetails", id],
+    queryFn: async () => {
       const res = await axios.get(
         `${process.env.NEXT_PUBLIC_DOMAIN}/product/${id}`,
       );
-      setProduct(res.data);
+      return res.data;
+    },
+  });
 
+  useEffect(() => {
+    const loadProductDetails = async () => {
       const result = await axios.get(
-        `${process.env.NEXT_PUBLIC_DOMAIN}/product?category=${res.data?.category}`,
+        `${process.env.NEXT_PUBLIC_DOMAIN}/product?category=${product?.category}`,
       );
       setRelated(result.data);
       setLoading(false);
     };
+    loadProductDetails();
+  }, [product]);
 
-    if (id) {
-      loadProductDetails();
-    }
-  }, [id]);
-
-  console.log(user);
   const handleAddToCart = async () => {
     if (!selectedSize) {
       return alert("please select a size");
@@ -53,6 +57,10 @@ const ProductDetails = () => {
       productData,
     );
     if (res.data.modifiedCount || res.data.insertedId) {
+      // refetch();
+      queryClient.invalidateQueries({
+        queryKey: ["cartCount", user?.email],
+      });
       alert("product added to cart");
     }
   };
@@ -60,6 +68,7 @@ const ProductDetails = () => {
   const revs = product?.reviews?.map((rev) => rev) || [];
 
   const { image, name, category, price, description } = product;
+  console.log(category);
   if (loading) {
     return <p>Loading...</p>;
   }

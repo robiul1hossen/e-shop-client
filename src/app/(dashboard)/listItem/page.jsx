@@ -12,7 +12,7 @@ const AllProductLists = () => {
   useEffect(() => {
     const loadProducts = async () => {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_DOMAIN}/products/admin?page=${page}&limit=10`,
+        `${process.env.NEXT_PUBLIC_DOMAIN}/products/query?page=${page}&limit=10`,
       );
       setProducts(res.data);
     };
@@ -46,7 +46,7 @@ const AllProductLists = () => {
             </thead>
             <tbody>
               {allProducts.map((product, index) => (
-                <tr key={products?._id}>
+                <tr key={product?._id}>
                   <th>{index + 1}</th>
                   <td>
                     <Image
@@ -84,7 +84,7 @@ const AllProductLists = () => {
           onClick={() => setPage(page - 1)}
           disabled={page === 1}
           className="bnt">
-          <MoveLeft />
+          <MoveLeft className="cursor-pointer" />
         </button>
 
         <div className="">
@@ -101,7 +101,7 @@ const AllProductLists = () => {
           onClick={() => setPage(page + 1)}
           disabled={page === products?.totalPage}
           className="bnt">
-          <MoveRight />
+          <MoveRight className="cursor-pointer" />
         </button>
       </div>
     </div>

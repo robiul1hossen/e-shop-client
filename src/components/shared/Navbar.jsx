@@ -1,26 +1,24 @@
 "use client";
 
 import { useAuth } from "@/hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const { user, loading, logout } = useAuth();
-  const [cartCount, setCartCount] = useState(0);
 
-  useEffect(() => {
-    const loadCart = async () => {
+  const { data: cartCount = 0 } = useQuery({
+    queryKey: ["cartCount", user?.email],
+    queryFn: async () => {
       const res = await axios.get(
         `${process.env.NEXT_PUBLIC_DOMAIN}/cart/${user?.email}`,
       );
-      setCartCount(res.data);
-    };
-    if (user) {
-      loadCart();
-    }
-  }, [user]);
+      return res.data;
+    },
+  });
+
   const links = (
     <>
       <Link href="/">

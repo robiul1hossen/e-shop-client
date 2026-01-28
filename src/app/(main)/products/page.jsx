@@ -4,31 +4,30 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ProductCard from "@/components/ProductCard";
 import Title from "@/components/Title";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight, MoveLeft, MoveRight } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
   const [cats, setCats] = useState([]);
   const [search, setSearch] = useState("");
-  const [foundData, setFoundData] = useState([]);
+  const [foundData, setFoundData] = useState({});
   const [sort, setSort] = useState("");
   const [filter, setFilter] = useState(false);
+  const [page, setPage] = useState(1);
   const { loading } = useAuth();
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_DOMAIN}/products`)
+      .get(
+        `${process.env.NEXT_PUBLIC_DOMAIN}/products/query?page=${page}&limit=10`,
+      )
       .then((res) => {
-        setProducts(res.data);
+        setFoundData(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
-  useEffect(() => {
-    setFoundData(products);
-  }, [products]);
+  }, [page]);
 
   const handleCatChange = (e) => {
     const { value, checked } = e.target;
@@ -40,7 +39,7 @@ const Products = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_DOMAIN}/products/query?`,
+      `${process.env.NEXT_PUBLIC_DOMAIN}/products/query?page=${page}&limit=10`,
       {
         params: { search, sort, cats },
       },
@@ -50,6 +49,9 @@ const Products = () => {
   const handleFilter = () => {
     setFilter(!filter);
   };
+  console.log(foundData);
+  const allProducts = foundData.result || [];
+  const paginationPages = [...Array(foundData?.totalPage)].map((_, i) => i + 1);
 
   if (loading) {
     return <h2>Loading...</h2>;
@@ -144,9 +146,35 @@ const Products = () => {
         </div>
         <div className="col-span-12 md:col-span-9">
           <div className=" px-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {foundData.map((product) => (
+            {allProducts.map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}
+          </div>
+          {/* pagination */}
+          <div className="flex items-center justify-center gap-2 my-6">
+            <button
+              onClick={() => setPage(page - 1)}
+              disabled={page === 1}
+              className="bnt">
+              <MoveLeft className="cursor-pointer" />
+            </button>
+
+            <div className="">
+              {paginationPages.map((p) => (
+                <button
+                  onClick={() => setPage(p)}
+                  key={p}
+                  className="btn btn-primary btn-sm mx-2">
+                  {p}
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={() => setPage(page + 1)}
+              disabled={page === foundData?.totalPage}
+              className="bnt">
+              <MoveRight className="cursor-pointer" />
+            </button>
           </div>
         </div>
       </div>
