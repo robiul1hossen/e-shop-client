@@ -20,9 +20,9 @@ const AddProduct = () => {
   } = useForm();
   const handleAddProduct = (data) => {
     console.log(data);
-    const profileImage = data.image[0];
+    const productImage = data.image[0];
     const formData = new FormData();
-    formData.append("image", profileImage);
+    formData.append("image", productImage);
     console.log(formData);
     const imageHostingUrl = `https://api.imgbb.com/1/upload?expiration=600&key=${process.env.NEXT_PUBLIC_IMAGE_HOSTING_KEY}`;
     axios
