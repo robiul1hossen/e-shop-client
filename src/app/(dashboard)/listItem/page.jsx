@@ -6,20 +6,41 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import axiosSecure from "@/lib/axiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const AllProductLists = () => {
   const [page, setPage] = useState(1);
-  const [products, setProducts] = useState({});
-  useEffect(() => {
-    const loadProducts = async () => {
+
+  const { data: products = [], refetch } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
       const res = await axiosSecure.get(
         `/products/query?page=${page}&limit=10`,
       );
-      setProducts(res.data);
-    };
-    loadProducts();
-  }, [page]);
-  console.log(products);
+      return res.data;
+    },
+  });
+
+  const handleDelete = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosSecure.delete(`/product/${id}`);
+        console.log(res.data);
+        refetch();
+        toast.success("Product deleted Successfully");
+      }
+    });
+  };
   const allProducts = products.result || [];
   const paginationPages = [...Array(products?.totalPage)].map((_, i) => i + 1);
   return (
@@ -70,7 +91,9 @@ const AllProductLists = () => {
                     <button className="cursor-pointer btn btn-xs">
                       <SquarePen size={16} />
                     </button>
-                    <button className="cursor-pointer btn btn-xs">
+                    <button
+                      onClick={() => handleDelete(product._id)}
+                      className="cursor-pointer btn btn-xs">
                       <Trash2 size={16} />
                     </button>
                   </td>
