@@ -10,8 +10,11 @@ const BestSales = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_DOMAIN}/products`)
+      .get(`${process.env.NEXT_PUBLIC_DOMAIN}/products`, {
+        withCredentials: true,
+      })
       .then((res) => {
+        console.log(res.data);
         setProducts(res.data);
       })
       .catch((error) => {

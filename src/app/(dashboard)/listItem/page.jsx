@@ -5,14 +5,15 @@ import { Eye, MoveLeft, MoveRight, SquarePen, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import axiosSecure from "@/lib/axiosSecure";
 
 const AllProductLists = () => {
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState({});
   useEffect(() => {
     const loadProducts = async () => {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_DOMAIN}/products/query?page=${page}&limit=10`,
+      const res = await axiosSecure.get(
+        `/products/query?page=${page}&limit=10`,
       );
       setProducts(res.data);
     };
