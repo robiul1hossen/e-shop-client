@@ -1,4 +1,5 @@
 "use client";
+import Title from "@/components/Title";
 import axiosSecure from "@/lib/axiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { MoveLeft, MoveRight } from "lucide-react";
@@ -17,6 +18,13 @@ const ManageUsers = () => {
   const paginationPages = [...Array(users?.totalPage)].map((_, i) => i + 1);
   return (
     <div>
+      <div className="py-8 text-3xl text-center">
+        <Title text1={"MANAGE"} text2={"USERS"} />
+        <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+          impedit perspiciatis vero dolor, nesciunt cumque vitae
+        </p>
+      </div>
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}

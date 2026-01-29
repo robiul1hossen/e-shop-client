@@ -71,6 +71,18 @@ export default function DashboardLayout({ children }) {
               )}
 
               <Link
+                href={"/myCart"}
+                className="flex gap-1 items-center border border-gray-300 border-r-0 px-1 md:px-3 py-2 bg-slate-50">
+                <Image
+                  width={18}
+                  height={18}
+                  src={"/listItem.png"}
+                  alt="my Cart"
+                  className="mx-auto md:mx-0 h-auto w-auto"
+                />
+                <span className="hidden md:block">My Cart</span>
+              </Link>
+              <Link
                 href={"/dashboard"}
                 className="flex gap-1 items-center border border-gray-300 border-r-0 px-1 md:px-3 py-2 bg-slate-50">
                 <Image

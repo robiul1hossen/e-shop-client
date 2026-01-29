@@ -5,9 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const Navbar = () => {
   const { user, loading, logout } = useAuth();
+  const [visible, setVisible] = useState(false);
 
   const { data: cartCount = 0 } = useQuery({
     queryKey: ["cartCount", user?.email],
@@ -83,7 +85,9 @@ const Navbar = () => {
         {user ? (
           <>
             <div className="flex gap-4 items-center">
-              <div className="group relative py-2">
+              <div
+                onClick={() => setVisible(!visible)}
+                className=" relative py-2">
                 <Image
                   height={18}
                   width={18}
@@ -92,7 +96,8 @@ const Navbar = () => {
                   alt="Profile"
                 />
 
-                <div className="p-4 hidden group-hover:flex flex-col absolute right-0 top-full -mt-1 w-40 bg-white border border-gray-200 shadow-lg rounded-md overflow-hidden z-999">
+                <div
+                  className={`p-4 flex-col absolute right-0 top-full -mt-1 w-40 bg-white border border-gray-200 shadow-lg rounded-md overflow-hidden z-999 ${visible ? "flex" : "hidden"}`}>
                   <Link href="/dashboard">
                     <li className="mx-2 font-medium list-none text-gray-500 mb-2">
                       DASHBOARD
@@ -113,16 +118,18 @@ const Navbar = () => {
               </div>
 
               <div className="relative">
-                <Image
-                  height={18}
-                  width={18}
-                  src="/cart.png"
-                  alt="Cart"
-                  style={{ width: "auto", height: "auto" }}
-                />
-                <div className="bg-black text-white rounded-full p-2 h-2 w-2 text-xs flex items-center justify-center text-center absolute top-2.5 left-1.75 cursor-pointer">
-                  <span>{cartCount.length}</span>
-                </div>
+                <Link href="/myCart">
+                  <Image
+                    height={180}
+                    width={180}
+                    src="/cart.png"
+                    alt="Cart"
+                    style={{ width: "auto", height: "auto" }}
+                  />
+                  <div className="bg-black text-white rounded-full p-2 h-2 w-2 text-xs flex items-center justify-center text-center absolute top-2.5 left-1.75 cursor-pointer">
+                    <span>{cartCount.length}</span>
+                  </div>
+                </Link>
               </div>
             </div>
           </>
