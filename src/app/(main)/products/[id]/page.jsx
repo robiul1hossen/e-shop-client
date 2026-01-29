@@ -10,6 +10,7 @@ import Rating from "react-rating";
 import { FaRegThumbsDown, FaRegThumbsUp } from "react-icons/fa";
 import { useAuth } from "@/hooks/useAuth";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -43,7 +44,7 @@ const ProductDetails = () => {
 
   const handleAddToCart = async () => {
     if (!selectedSize) {
-      return alert("please select a size");
+      return toast.error("please select a size");
     }
     const productData = {
       name: user.name,
@@ -61,14 +62,13 @@ const ProductDetails = () => {
       queryClient.invalidateQueries({
         queryKey: ["cartCount", user?.email],
       });
-      alert("product added to cart");
+      toast.success("product added to cart");
     }
   };
 
   const revs = product?.reviews?.map((rev) => rev) || [];
 
   const { image, name, category, price, description } = product;
-  console.log(category);
   if (loading) {
     return <p>Loading...</p>;
   }

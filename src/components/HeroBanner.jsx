@@ -32,7 +32,7 @@ const slides = [
 
 export default function HeroBanner() {
   return (
-    <div className="mb-12 relative w-full h-[65vh]  overflow-hidden">
+    <div className="mb-12 relative w-full h-[65vh] overflow-hidden">
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         effect="fade"
@@ -40,7 +40,12 @@ export default function HeroBanner() {
         autoplay={{ delay: 4000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         navigation={true}
-        className="h-full w-full">
+        style={{
+          paddingTop: "0px",
+          paddingBottom: "0px",
+          height: "100%",
+          width: "100%",
+        }}>
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <div

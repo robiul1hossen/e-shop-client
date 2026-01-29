@@ -54,9 +54,10 @@ const AllProductLists = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const res = await axiosSecure.delete(`/product/${id}`);
-        console.log(res.data);
-        refetch();
-        toast.success("Product deleted Successfully");
+        if (res.data.deletedCount) {
+          refetch();
+          toast.success("Product deleted Successfully");
+        }
       }
     });
   };
@@ -92,7 +93,6 @@ const AllProductLists = () => {
     if (data.description?.trim()) {
       updatedProduct.description = data.description;
     }
-    console.log(updatedProduct);
     if (Object.keys(updatedProduct).length === 0) {
       return closeModal();
     }
@@ -101,7 +101,6 @@ const AllProductLists = () => {
       `/products/${product._id}`,
       updatedProduct,
     );
-    console.log(res.data);
     if (res.data.modifiedCount) {
       toast.success("Product Updated");
     }
@@ -111,7 +110,6 @@ const AllProductLists = () => {
 
   const allProducts = products.result || [];
   const paginationPages = [...Array(products?.totalPage)].map((_, i) => i + 1);
-  // console.log(product);
   return (
     <div className="">
       <div className="py-8 text-3xl text-center">
@@ -145,7 +143,7 @@ const AllProductLists = () => {
                       height={40}
                       src={product?.image}
                       alt={product?.name}
-                      className="object-cover"
+                      className="object-cover h-auto w-auto"
                     />
                   </td>
                   <td>{product.name}</td>

@@ -1,33 +1,60 @@
 import { NextResponse } from "next/server";
+import { jwtDecode } from "jwt-decode";
 
 export function middleware(request) {
-  // ১. Cookie theke token-ti nin
   const token = request.cookies.get("token")?.value;
-
-  // ২. Bortoman path-ti nin
   const path = request.nextUrl.pathname;
 
-  // ৩. Define korun kon route gulo protect korte chan
   const isProtectedRoute =
-    path.startsWith("/addProduct") || path.startsWith("/profile");
+    path.startsWith("/addProduct") ||
+    path.startsWith("/profile") ||
+    path.startsWith("/dashboard") ||
+    path.startsWith("/listItem") ||
+    path.startsWith("/manageUsers");
 
-  // ৪. Login/Register page-e login thaka user-ke jete diben na
+  const isAdminRoute = path.startsWith(
+    "/manageUsers" && "/addProduct" && "/listItem",
+  );
+
   const isAuthPage = path === "/login" || path === "/register";
 
-  // Logic: User login nai kintu protected route-e jete chay
+  // 🔒 Protected routes → login required
   if (isProtectedRoute && !token) {
-    return NextResponse.redirect(new URL("/login", request.url));
+    const loginUrl = new URL("/login", request.url);
+    loginUrl.searchParams.set("callbackUrl", path);
+    return NextResponse.redirect(loginUrl);
   }
 
-  // Logic: User already login, tai login/register-e jawar dorkar nai
+  // 🔁 Logged in user cannot access login/register
   if (isAuthPage && token) {
     return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // 👑 Admin-only access
+  if (token && isAdminRoute) {
+    try {
+      const decoded = jwtDecode(token);
+
+      if (decoded.role !== "admin") {
+        return NextResponse.redirect(new URL("/unauthorized", request.url));
+      }
+    } catch (err) {
+      // invalid token format
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
   }
 
   return NextResponse.next();
 }
 
-// ৫. Matcher diye define korun kothay kothay middleware cholbe
 export const config = {
-  matcher: ["/addProduct/:path*", "/profile/:path*", "/login", "/register"],
+  matcher: [
+    "/addProduct/:path*",
+    "/profile/:path*",
+    "/dashboard/:path*",
+    "/listItem/:path*",
+    "/manageUsers/:path*",
+    "/login",
+    "/register",
+  ],
 };

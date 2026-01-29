@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const AddProduct = () => {
   const [preview, setPreview] = useState(null);
@@ -19,11 +20,9 @@ const AddProduct = () => {
     reset,
   } = useForm();
   const handleAddProduct = (data) => {
-    console.log(data);
     const productImage = data.image[0];
     const formData = new FormData();
     formData.append("image", productImage);
-    console.log(formData);
     const imageHostingUrl = `https://api.imgbb.com/1/upload?expiration=600&key=${process.env.NEXT_PUBLIC_IMAGE_HOSTING_KEY}`;
     axios
       .post(imageHostingUrl, formData)
@@ -39,10 +38,12 @@ const AddProduct = () => {
           reviews: [],
         };
         const result = await axiosSecure.post("/product", product);
-        console.log(result.data);
+        if (result.data.insertedId) {
+          toast.success("Product added successfully");
+          reset();
+        }
       })
       .catch((error) => console.log(error));
-    console.log(sizes);
   };
   const handleCatChange = (e) => {
     const { value, checked } = e.target;
@@ -50,7 +51,6 @@ const AddProduct = () => {
       checked ? [...prev, value] : prev.filter((cat) => cat !== value),
     );
   };
-  console.log(category);
   return (
     <div className="mb-10">
       <div className="py-8 text-xs sm:text-sm md:text-3xl text-center">

@@ -14,7 +14,6 @@ const BestSales = () => {
         withCredentials: true,
       })
       .then((res) => {
-        console.log(res.data);
         setProducts(res.data);
       })
       .catch((error) => {

@@ -7,7 +7,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 const LoginPage = () => {
-  const { setUser } = useAuth();
+  const { setUser, loginUser } = useAuth();
   const router = useRouter();
   const {
     register,
@@ -15,21 +15,7 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
   const handleLogin = async (data) => {
-    await axios
-      .post(`${process.env.NEXT_PUBLIC_DOMAIN}/login`, data, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res.data);
-
-        if (res.data.success) {
-          setUser(res.data.user);
-          router.push("/addProduct");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    loginUser(data);
   };
   return (
     <div className="flex justify-center items-center min-h-screen">

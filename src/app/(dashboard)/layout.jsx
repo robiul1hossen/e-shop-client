@@ -1,10 +1,13 @@
+"use client";
 import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
+import { useAuth } from "@/hooks/useAuth";
 import { Target } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function DashboardLayout({ children }) {
+  const { user } = useAuth();
   return (
     <div className="bg-gray-50">
       <div className="max-w-6xl mx-auto">
@@ -20,34 +23,53 @@ export default function DashboardLayout({ children }) {
                   height={18}
                   src={"/addItem.png"}
                   alt="Home"
-                  className="mx-auto md:mx-0"
+                  className="mx-auto md:mx-0 h-auto w-auto"
                 />
                 <span className="hidden md:block">Home</span>
               </Link>
-              <Link
-                href={"/listItem"}
-                className="flex gap-1 items-center border border-gray-300 border-r-0 px-1 md:px-3 py-2 bg-slate-50">
-                <Image
-                  width={18}
-                  height={18}
-                  src={"/listItem.png"}
-                  alt="listItem"
-                  className="mx-auto md:mx-0"
-                />
-                <span className="hidden md:block">Item List</span>
-              </Link>
-              <Link
-                href={"/addProduct"}
-                className="flex gap-1 items-center border border-gray-300 border-r-0 px-1 md:px-3 py-2 bg-slate-50">
-                <Image
-                  width={18}
-                  height={18}
-                  src={"/listItem.png"}
-                  alt="listItem"
-                  className="mx-auto md:mx-0"
-                />
-                <span className="hidden md:block">Add Product</span>
-              </Link>
+              {user?.role === "admin" ? (
+                <>
+                  <Link
+                    href={"/listItem"}
+                    className="flex gap-1 items-center border border-gray-300 border-r-0 px-1 md:px-3 py-2 bg-slate-50">
+                    <Image
+                      width={18}
+                      height={18}
+                      src={"/listItem.png"}
+                      alt="listItem"
+                      className="mx-auto md:mx-0 h-auto w-auto"
+                    />
+                    <span className="hidden md:block">Item List</span>
+                  </Link>
+                  <Link
+                    href={"/addProduct"}
+                    className="flex gap-1 items-center border border-gray-300 border-r-0 px-1 md:px-3 py-2 bg-slate-50">
+                    <Image
+                      width={18}
+                      height={18}
+                      src={"/listItem.png"}
+                      alt="listItem"
+                      className="mx-auto md:mx-0 h-auto w-auto"
+                    />
+                    <span className="hidden md:block">Add Product</span>
+                  </Link>
+                  <Link
+                    href={"/manageUsers"}
+                    className="flex gap-1 items-center border border-gray-300 border-r-0 px-1 md:px-3 py-2 bg-slate-50">
+                    <Image
+                      width={18}
+                      height={18}
+                      src={"/listItem.png"}
+                      alt="Manage"
+                      className="mx-auto md:mx-0 h-auto w-auto"
+                    />
+                    <span className="hidden md:block">Manage Users</span>
+                  </Link>
+                </>
+              ) : (
+                <></>
+              )}
+
               <Link
                 href={"/dashboard"}
                 className="flex gap-1 items-center border border-gray-300 border-r-0 px-1 md:px-3 py-2 bg-slate-50">
@@ -56,9 +78,8 @@ export default function DashboardLayout({ children }) {
                   height={18}
                   src={"/listItem.png"}
                   alt="dashboard"
-                  className="mx-auto md:mx-0"
+                  className="mx-auto md:mx-0 h-auto w-auto"
                 />
-
                 <span className="hidden md:block">Overview</span>
               </Link>
             </div>

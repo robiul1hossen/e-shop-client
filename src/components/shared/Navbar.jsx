@@ -28,7 +28,7 @@ const Navbar = () => {
         <li className="mx-2 font-medium">PRODUCTS</li>
       </Link>
 
-      <Link href="/">
+      <Link href="/about">
         <li className="mx-2 font-medium">ABOUT</li>
       </Link>
       <Link href="/">
@@ -59,7 +59,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-gray-600 font-medium text-sm">
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-999 mt-3 w-32 p-2 shadow text-gray-600 font-medium text-sm">
             {links}
           </ul>
         </div>
@@ -67,9 +67,10 @@ const Navbar = () => {
           <Image
             width={100}
             height={100}
+            loading="eager"
             className="w-full h-12 px-5"
             src="/logo-dark.png"
-            alt=""
+            alt="logo"
           />
         </Link>
       </div>
@@ -87,7 +88,7 @@ const Navbar = () => {
                   height={18}
                   width={18}
                   src="/profile.png"
-                  className="cursor-pointer"
+                  className="cursor-pointer w-auto h-auto"
                   alt="Profile"
                 />
 
@@ -116,8 +117,8 @@ const Navbar = () => {
                   height={18}
                   width={18}
                   src="/cart.png"
-                  className=""
                   alt="Cart"
+                  style={{ width: "auto", height: "auto" }}
                 />
                 <div className="bg-black text-white rounded-full p-2 h-2 w-2 text-xs flex items-center justify-center text-center absolute top-2.5 left-1.75 cursor-pointer">
                   <span>{cartCount.length}</span>

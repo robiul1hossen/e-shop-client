@@ -60,7 +60,6 @@ const ReviewSection = () => {
         className="mySwiper">
         {reviews.map((review) => (
           <SwiperSlide key={review.id} className="review-card">
-            {/* {console.log(review)} */}
             <div className="card-content">
               {/* Upper Section: Quote Icon & Rating */}
               <div className="flex justify-between items-start mb-4">
@@ -85,7 +84,7 @@ const ReviewSection = () => {
                     height={100}
                     src={review.image}
                     alt={review.name}
-                    className="rounded-full object-cover border-2 border-white shadow-sm"
+                    className="rounded-full object-cover border-2 border-white shadow-sm h-auto w-auto"
                   />
                 </div>
                 <div className="text-left">

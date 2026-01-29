@@ -2,14 +2,13 @@
 import { useAuth } from "@/hooks/useAuth";
 import React from "react";
 
-const OverView = () => {
+const Profile = () => {
   const { user } = useAuth();
   return (
     <div>
-      <h2>this is overview page {user?.name}</h2>
-      <p>{user?.email}</p>
+      <h1>Welcome Mr. {user?.name}</h1>
     </div>
   );
 };
 
-export default OverView;
+export default Profile;

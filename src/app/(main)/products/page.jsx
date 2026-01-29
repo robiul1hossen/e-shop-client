@@ -49,7 +49,6 @@ const Products = () => {
   const handleFilter = () => {
     setFilter(!filter);
   };
-  console.log(foundData);
   const allProducts = foundData.result || [];
   const paginationPages = [...Array(foundData?.totalPage)].map((_, i) => i + 1);
 
