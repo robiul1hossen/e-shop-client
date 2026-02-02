@@ -6,14 +6,14 @@ export function middleware(request) {
   const path = request.nextUrl.pathname;
 
   const isProtectedRoute =
-    path.startsWith("/addProduct") ||
     path.startsWith("/profile") ||
     path.startsWith("/dashboard") ||
+    path.startsWith("/addProduct") ||
     path.startsWith("/listItem") ||
     path.startsWith("/manageUsers");
 
   const isAdminRoute = path.startsWith(
-    "/manageUsers" && "/addProduct" && "/listItem",
+    "/manageUsers" || "/addProduct" || "/listItem",
   );
 
   const isAuthPage = path === "/login" || path === "/register";
@@ -42,8 +42,8 @@ export function middleware(request) {
       // invalid token format
       return NextResponse.redirect(new URL("/login", request.url));
     }
+    // return NextResponse.next();
   }
-
   return NextResponse.next();
 }
 

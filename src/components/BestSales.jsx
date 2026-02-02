@@ -31,7 +31,7 @@ const BestSales = () => {
       </div>
       <div className=" px-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product._id} product={product} />
         ))}
       </div>
     </div>
