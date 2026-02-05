@@ -23,7 +23,7 @@ export const RegisterForm = () => {
       })
       .then((res) => {
         if (res.data.success) {
-          Cookies.set("token", res.data.token, { expires: 1, path: "/" });
+          // Cookies.set("token", res.data.token, { expires: 1, path: "/" });
           router.push(callbackUrl);
           router.refresh();
         }

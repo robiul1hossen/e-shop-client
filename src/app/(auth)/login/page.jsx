@@ -25,7 +25,7 @@ export const LoginForm = () => {
       })
       .then((res) => {
         if (res.data.success) {
-          Cookies.set("token", res.data.token, { expires: 1, path: "/" });
+          // Cookies.set("token", res.data.token, { expires: 1, path: "/" });
           setUser(res.data.user);
           router.push(callbackUrl);
           router.refresh();

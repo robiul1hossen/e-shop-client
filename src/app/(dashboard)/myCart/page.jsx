@@ -5,7 +5,7 @@ import axiosSecure from "@/lib/axiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowRight, Eye, Trash2 } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
@@ -19,7 +19,6 @@ const MyCart = () => {
       return res.data;
     },
   });
-
   const totalPrice = carts.reduce((total, item) => {
     return total + item.productData.price * item.quantity;
   }, 0);
@@ -36,7 +35,6 @@ const MyCart = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const res = await axiosSecure.delete(`/cart/${id}`);
-        console.log(res.data);
         refetch();
         toast.success("Product Deleted");
       }
