@@ -10,8 +10,8 @@ export default function DashboardLayout({ children }) {
   const { user } = useAuth();
   return (
     <div className="bg-gray-50">
+      <Navbar />
       <div className="max-w-6xl mx-auto">
-        <Navbar />
         <div className="grid grid-cols-12 w-full md:gap-10 min-h-screen">
           <div className="col-span-2 md:col-span-3 md:py-4 border-r border-gray-300 bg-[#f9fafb] shadow-sm">
             <div className="flex flex-col gap-2 pl-2 md:pl-16">

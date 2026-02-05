@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -37,6 +38,7 @@ const AuthProvider = ({ children }) => {
         )
         .then((res) => {
           if (res.data.success) {
+            Cookies.remove("token");
             setUser(null);
             router.push("/");
           }

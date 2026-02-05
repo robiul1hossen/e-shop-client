@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { Suspense } from "react";
@@ -22,6 +23,7 @@ export const RegisterForm = () => {
       })
       .then((res) => {
         if (res.data.success) {
+          Cookies.set("token", res.data.token, { expires: 1, path: "/" });
           router.push(callbackUrl);
           router.refresh();
         }

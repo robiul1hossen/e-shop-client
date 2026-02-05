@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Suspense } from "react";
+import Cookies from "js-cookie";
 
 export const LoginForm = () => {
   const { setUser } = useAuth();
@@ -24,6 +25,7 @@ export const LoginForm = () => {
       })
       .then((res) => {
         if (res.data.success) {
+          Cookies.set("token", res.data.token, { expires: 1, path: "/" });
           setUser(res.data.user);
           router.push(callbackUrl);
           router.refresh();
