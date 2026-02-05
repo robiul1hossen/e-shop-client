@@ -111,9 +111,14 @@ const ProductDetails = () => {
               ))}
             </div>
             <div>
+              {/* <button
+                onClick={handleAddToCart}
+                className="text-white bg-black px-6 py-2 mt-10 cursor-pointer font-bold tracking-widest hover:bg-gray-800 active:scale-95 transition-all duration-200">
+                ADD TO CART
+              </button> */}
               <button
                 onClick={handleAddToCart}
-                className="text-white bg-black px-6 py-2 mt-10 cursor-pointer">
+                className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2.5 px-5 rounded-lg transition-all duration-300 shadow-md active:scale-95 cursor-pointer mt-6">
                 ADD TO CART
               </button>
             </div>
@@ -194,7 +199,7 @@ const ProductDetails = () => {
         </div>
       ))}
       <div className="flex flex-col mt-10">
-        <form>
+        <form onSubmit={(e) => e.preventDefault()}>
           <div>
             <h2 className="text-xl font-bold">Add a Review</h2>
             <Rating
@@ -209,9 +214,7 @@ const ProductDetails = () => {
             placeholder="write a review"
             className="border outline-none w-full md:w-2/6 px-4 py-2"></textarea>
           <div className="md:w-2/6 mt-2 flex justify-end">
-            <button
-              type="submit"
-              className="text-white bg-black px-6 py-2 mt-10 cursor-pointer">
+            <button className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2.5 px-5 rounded-lg transition-all duration-300 shadow-md active:scale-95 cursor-pointer mb-10">
               Submit
             </button>
           </div>

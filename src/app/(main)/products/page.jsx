@@ -77,9 +77,7 @@ const Products = () => {
             className="input outline-none rounded-r-none"
           />
 
-          <button
-            type="submit"
-            className="text-white bg-black px-6 py-2 mt-2 rounded-r-md cursor-pointer">
+          <button className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2.5 px-6 rounded-r-md transition-all duration-300 shadow-md active:scale-95 cursor-pointer mt-3 uppercase">
             Search
           </button>
         </form>
@@ -135,9 +133,7 @@ const Products = () => {
               </label>
             </fieldset>
             <div>
-              <button
-                type="submit"
-                className="text-white bg-black px-6 py-2 mt-2 cursor-pointer">
+              <button className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2.5 px-6 rounded-lg transition-all duration-300 shadow-md active:scale-95 cursor-pointer mt-3 uppercase">
                 Filter
               </button>
             </div>
