@@ -15,6 +15,7 @@ import toast from "react-hot-toast";
 const ProductDetails = () => {
   const { id } = useParams();
   const { user } = useAuth();
+
   // const [product, setProduct] = useState({});
   const [related, setRelated] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -47,10 +48,12 @@ const ProductDetails = () => {
       return toast.error("please select a size");
     }
     const productData = {
+      userId: user?._id,
       name: user.name,
       email: user.email,
       productId: id,
       size: selectedSize,
+      image: product.image,
       quantity: 1,
     };
     const res = await axios.post(
@@ -58,7 +61,6 @@ const ProductDetails = () => {
       productData,
     );
     if (res.data.modifiedCount || res.data.insertedId) {
-      // refetch();
       queryClient.invalidateQueries({
         queryKey: ["cartCount", user?.email],
       });

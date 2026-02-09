@@ -21,7 +21,7 @@ const MyCart = () => {
     },
   });
   const totalPrice = carts.reduce((total, item) => {
-    return total + item.productData.price * item.quantity;
+    return total + item?.price * item.quantity;
   }, 0);
 
   const handleDelete = async (id) => {
@@ -75,14 +75,14 @@ const MyCart = () => {
                     <Image
                       width={40}
                       height={40}
-                      src={cart.productData?.image}
-                      alt={cart.productData.name}
+                      src={cart?.image}
+                      alt={cart?.name}
                     />
                   </td>
-                  <td>{cart.productData.name}</td>
+                  <td>{cart?.name}</td>
                   <td>{cart.size}</td>
                   <td>{cart.quantity}</td>
-                  <td>${cart.productData.price * cart.quantity}</td>
+                  <td>${cart?.price * cart?.quantity}</td>
                   <td>
                     <button
                       onClick={() => handleDelete(cart._id)}

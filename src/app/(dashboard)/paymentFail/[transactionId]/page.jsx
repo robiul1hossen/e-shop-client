@@ -3,13 +3,13 @@
 import { useParams } from "next/navigation";
 import React from "react";
 
-const PaymentSuccess = () => {
+const PaymentFail = () => {
   const { transactionId } = useParams();
   return (
     <div>
-      <h2>payment successful {transactionId}</h2>
+      <h2>your payment failed. please try again {transactionId}</h2>
     </div>
   );
 };
 
-export default PaymentSuccess;
+export default PaymentFail;
