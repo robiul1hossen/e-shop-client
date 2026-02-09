@@ -4,8 +4,9 @@ import { jwtDecode } from "jwt-decode";
 export function middleware(request) {
   const token = request.cookies.get("token")?.value;
   const path = request.nextUrl.pathname;
+  // console.log("token form middleware", token);
 
-  console.log("current token", !!token);
+  // console.log("current token10", !!token);
 
   const isProtectedRoute =
     path.startsWith("/profile") ||

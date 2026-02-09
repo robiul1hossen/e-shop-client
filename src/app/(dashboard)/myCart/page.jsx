@@ -5,6 +5,7 @@ import axiosSecure from "@/lib/axiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowRight, Eye, Trash2 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
@@ -118,10 +119,12 @@ const MyCart = () => {
                   <span>${totalPrice + 10}</span>
                 </h2>
               </div>
-              <button className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2.5 px-5 rounded-lg transition-all duration-300 shadow-md active:scale-95 cursor-pointer mt-6">
-                Proceed to Checkout
-                <ArrowRight size={16} />
-              </button>
+              <Link href="/checkout">
+                <button className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2.5 px-5 rounded-lg transition-all duration-300 shadow-md active:scale-95 cursor-pointer mt-6">
+                  Proceed to Checkout
+                  <ArrowRight size={16} />
+                </button>
+              </Link>
             </div>
           </div>
         </div>

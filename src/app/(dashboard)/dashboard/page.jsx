@@ -189,28 +189,12 @@ const OverView = () => {
             </div>
           </div>
         </div>
-        {/* Reviews Data */}
-        <div className=" h-auto bg-linear-to-br from-emerald-500 to-emerald-700 shadow-emerald-900/20 rounded-xl px-6 py-4 transition-all hover:scale-102 cursor-pointer shadow-xl">
-          <div className="flex flex-col items-center justify-center gap-2">
-            <div className="p-3 bg-white/20 rounded-full mb-2">
-              <ShoppingBag className="text-white w-6 h-6" />
-            </div>
-            <h2 className="font-semibold text-xs tracking-widest text-emerald-100 uppercase">
-              Order Management
-            </h2>
-
-            <div className="flex items-baseline gap-1">
-              <p className="text-3xl font-bold text-white">120</p>
-              <span className="text-xs text-emerald-200 font-medium">+23%</span>
-            </div>
-          </div>
-        </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 my-6">
-        <div className="flex-1 h-80 shadow-xl p-6">
+        <div className="flex-1 h-80 shadow-xl p-6 bg-white">
           <Bar options={options} data={data} />
         </div>
-        <div className="flex-1 h-80 shadow-xl p-6">
+        <div className="flex-1 h-80 shadow-xl p-6 bg-white">
           <Pie data={data2} options={options2} />
         </div>
       </div>

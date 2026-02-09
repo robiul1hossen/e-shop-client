@@ -1,12 +1,13 @@
 "use client";
 import { useAuth } from "@/hooks/useAuth";
-import axios from "axios";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Suspense } from "react";
 import Cookies from "js-cookie";
+import toast from "react-hot-toast";
+import axiosSecure from "@/lib/axiosSecure";
 
 export const LoginForm = () => {
   const { setUser } = useAuth();
@@ -19,21 +20,20 @@ export const LoginForm = () => {
     formState: { errors },
   } = useForm();
   const handleLogin = async (data) => {
-    await axios
-      .post(`${process.env.NEXT_PUBLIC_DOMAIN}/login`, data, {
-        withCredentials: true,
-      })
-      .then((res) => {
+    console.log("btn clicked");
+    try {
+      await axiosSecure.post(`/login`, data).then((res) => {
         if (res.data.success) {
           // Cookies.set("token", res.data.token, { expires: 1, path: "/" });
           setUser(res.data.user);
           router.push(callbackUrl);
           router.refresh();
         }
-      })
-      .catch((error) => {
-        console.log(error);
       });
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+      // console.log(error);
+    }
   };
   return (
     <div className="card-body">
