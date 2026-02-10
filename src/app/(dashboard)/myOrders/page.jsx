@@ -5,6 +5,7 @@ import axiosSecure from "@/lib/axiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import React from "react";
+import moment from "moment";
 
 const MyOrder = () => {
   const { user } = useAuth();
@@ -17,10 +18,24 @@ const MyOrder = () => {
   });
   let completedOrder;
   if (myOrder) {
-    completedOrder = myOrder[0];
+    completedOrder = myOrder;
   }
 
-  console.log(completedOrder);
+  // const myData =
+  //   completedOrder?.reduce((acc, order) => {
+  //     return acc.concat(order.cartOrderData);
+  //   }, []) || [];
+  // console.log(myData);
+  const myData = completedOrder?.flatMap((order) =>
+    order.cartOrderData.map((item) => ({
+      ...item,
+      paidAt: order.paidAt,
+      transactionId: order.transactionId,
+      totalPrice: order.totalPrice,
+    })),
+  );
+
+  console.log(myData);
 
   return (
     <div>
@@ -42,21 +57,24 @@ const MyOrder = () => {
             </tr>
           </thead>
           <tbody>
-            {completedOrder?.cartOrderData?.map((order, i) => (
+            {myData?.map((order, i) => (
               <tr key={order._id}>
                 <th>{i + 1}</th>
                 <td>
                   <Image
                     width={40}
                     height={40}
-                    src={order?.image}
-                    alt={order?.name}
+                    src={
+                      order?.image ||
+                      "https://e7.pngegg.com/pngimages/84/165/png-clipart-united-states-avatar-organization-information-user-avatar-service-computer-wallpaper-thumbnail.png"
+                    }
+                    alt={order?.productName}
                   />
                 </td>
                 <td></td>
                 <td>{order.size}</td>
                 <td>{order.quantity}</td>
-                <td>{completedOrder.paidAt}</td>
+                <td>{moment(order.paidAt).format("DD-MM-YY")}</td>
                 <td>
                   <button className="btn btn-sm">Track</button>
                 </td>

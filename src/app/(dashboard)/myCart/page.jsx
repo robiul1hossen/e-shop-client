@@ -43,6 +43,7 @@ const MyCart = () => {
 
     refetch();
   };
+  console.log(carts);
   return (
     <div className="mb-25">
       <div className="py-8 text-3xl text-center">
@@ -69,7 +70,7 @@ const MyCart = () => {
             </thead>
             <tbody>
               {carts.map((cart, i) => (
-                <tr key={cart?._id}>
+                <tr key={i}>
                   <th>{i + 1}</th>
                   <td>
                     <Image

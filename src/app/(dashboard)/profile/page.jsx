@@ -7,6 +7,7 @@ const Profile = () => {
   return (
     <div>
       <h1>Welcome Mr. {user?.name}</h1>
+      <h1>Welcome Mr. {user?.email}</h1>
     </div>
   );
 };

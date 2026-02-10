@@ -94,6 +94,18 @@ export default function DashboardLayout({ children }) {
                 />
                 <span className="hidden md:block">Overview</span>
               </Link>
+              <Link
+                href={"/myOrders"}
+                className="flex gap-1 items-center border border-gray-300 border-r-0 px-1 md:px-3 py-2 bg-slate-50">
+                <Image
+                  width={18}
+                  height={18}
+                  src={"/listItem.png"}
+                  alt="dashboard"
+                  className="mx-auto md:mx-0 h-auto w-auto"
+                />
+                <span className="hidden md:block">My Orders</span>
+              </Link>
             </div>
           </div>
           <div className="col-span-10 md:col-span-9 px-2 md:px-0">

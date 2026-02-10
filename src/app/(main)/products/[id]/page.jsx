@@ -47,13 +47,17 @@ const ProductDetails = () => {
     if (!selectedSize) {
       return toast.error("please select a size");
     }
+    if (!user) {
+      return toast.error("Please Login First!");
+    }
     const productData = {
       userId: user?._id,
-      name: user.name,
-      email: user.email,
+      name: user?.name,
+      email: user?.email,
       productId: id,
       size: selectedSize,
       image: product.image,
+      productName: product?.name,
       quantity: 1,
     };
     const res = await axios.post(
@@ -113,11 +117,6 @@ const ProductDetails = () => {
               ))}
             </div>
             <div>
-              {/* <button
-                onClick={handleAddToCart}
-                className="text-white bg-black px-6 py-2 mt-10 cursor-pointer font-bold tracking-widest hover:bg-gray-800 active:scale-95 transition-all duration-200">
-                ADD TO CART
-              </button> */}
               <button
                 onClick={handleAddToCart}
                 className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2.5 px-5 rounded-lg transition-all duration-300 shadow-md active:scale-95 cursor-pointer mt-6">
@@ -155,7 +154,7 @@ const ProductDetails = () => {
                 height={40}
                 className="w-12 h-12 rounded-full object-cover"
                 src={review.reviewerImage}
-                alt=""
+                alt="Reviewer Name"
               />
               <div className="flex flex-col">
                 <div className="flex">
