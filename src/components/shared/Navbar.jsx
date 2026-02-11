@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/hooks/useAuth";
+import axiosSecure from "@/lib/axiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
@@ -14,9 +15,7 @@ const Navbar = () => {
   const { data: cartCount = 0 } = useQuery({
     queryKey: ["cartCount", user?.email],
     queryFn: async () => {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_DOMAIN}/cart/${user?.email}`,
-      );
+      const res = await axiosSecure.get(`/cart/${user?.email}`);
       return res.data;
     },
   });

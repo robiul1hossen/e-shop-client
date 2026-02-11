@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import Title from "./Title";
+import { motion } from "framer-motion";
 
 const BestSales = () => {
   const [products, setProducts] = useState([]);
@@ -21,7 +22,11 @@ const BestSales = () => {
       });
   }, []);
   return (
-    <div className="max-w-6xl mx-auto mb-12">
+    <motion.div
+      initial={{ opacity: 0, y: 35 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="max-w-6xl mx-auto mb-12">
       <div className="py-8 text-3xl text-center">
         <Title text1={"BEST"} text2={"SALES"} />
         <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
@@ -34,7 +39,7 @@ const BestSales = () => {
           <ProductCard key={product._id} product={product} />
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 import axiosSecure from "@/lib/axiosSecure";
 
 export const LoginForm = () => {
-  const { setUser } = useAuth();
+  const { setUser, loading, setLoading } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
@@ -20,21 +20,24 @@ export const LoginForm = () => {
     formState: { errors },
   } = useForm();
   const handleLogin = async (data) => {
-    console.log("btn clicked");
+    setLoading(true);
     try {
       await axiosSecure.post(`/login`, data).then((res) => {
         if (res.data.success) {
-          // Cookies.set("token", res.data.token, { expires: 1, path: "/" });
           setUser(res.data.user);
           router.push(callbackUrl);
           router.refresh();
+        } else {
+          toast.error(res.data);
         }
       });
     } catch (error) {
       toast.error(error?.response?.data?.message);
-      // console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
+
   return (
     <div className="card-body">
       <h2 className="text-2xl font-bold text-center">Welcome Back</h2>
@@ -63,7 +66,14 @@ export const LoginForm = () => {
           <div>
             <a className="link link-hover">Forgot password?</a>
           </div>
-          <button className="btn btn-neutral mt-4">Login</button>
+
+          <button className="btn btn-neutral mt-4">
+            {loading ? (
+              <span className="loading loading-spinner loading-xs"></span>
+            ) : (
+              "Login"
+            )}
+          </button>
           <div>
             <p>
               New to this website please{" "}
@@ -82,7 +92,10 @@ const LoginPage = () => {
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-xl">
-        <Suspense fallback={<p>Login Loading...</p>}>
+        <Suspense
+          fallback={
+            <span className="loading loading-spinner loading-xs"></span>
+          }>
           {" "}
           <LoginForm />{" "}
         </Suspense>

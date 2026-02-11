@@ -2,18 +2,44 @@
 import Title from "@/components/Title";
 import axiosSecure from "@/lib/axiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import { MoveLeft, MoveRight } from "lucide-react";
+import { MoveLeft, MoveRight, Trash2 } from "lucide-react";
+import moment from "moment";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const ManageUsers = () => {
   const [page, setPage] = useState(1);
-  const { data: users = {} } = useQuery({
+  const { data: users = {}, refetch } = useQuery({
     queryKey: ["users", page],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users?page=${page}&limit=10`);
       return res.data;
     },
   });
+
+  const handleDelete = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosSecure.delete(`/user/admin/${id}`);
+        if (res.data.deletedCount) {
+          toast.success("User deleted!");
+          refetch();
+        }
+        console.log(res.data);
+      }
+    });
+  };
+
+  console.log(users.result);
   const allUsers = users.result || [];
   const paginationPages = [...Array(users?.totalPage)].map((_, i) => i + 1);
   return (
@@ -35,6 +61,7 @@ const ManageUsers = () => {
               <th>Email</th>
               <th>Created At</th>
               <th>Role</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -43,8 +70,15 @@ const ManageUsers = () => {
                 <th>{i + 1}</th>
                 <td>{user?.name}</td>
                 <td>{user?.email}</td>
-                <td>{user?.createdAt}</td>
+                <td>{moment(user?.createdAt).format("DD-MM-YYYY")}</td>
                 <td>{user?.role}</td>
+                <td>
+                  <button
+                    onClick={() => handleDelete(user._id)}
+                    className="cursor-pointer">
+                    <Trash2 size={16} />
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

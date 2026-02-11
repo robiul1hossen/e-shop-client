@@ -16,6 +16,7 @@ const Products = () => {
   const [page, setPage] = useState(1);
   const { loading } = useAuth();
 
+  console.log(cats);
   useEffect(() => {
     axios
       .get(
@@ -28,6 +29,7 @@ const Products = () => {
         console.log(error);
       });
   }, [page]);
+  console.log(foundData);
 
   const handleCatChange = (e) => {
     const { value, checked } = e.target;
@@ -126,7 +128,7 @@ const Products = () => {
                 <input
                   onChange={handleCatChange}
                   type="checkbox"
-                  value="Kids"
+                  value="Kid"
                   className="checkbox"
                 />
                 Kid
@@ -140,37 +142,45 @@ const Products = () => {
           </form>
         </div>
         <div className="col-span-12 md:col-span-9">
-          <div className=" px-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {allProducts.map((product) => (
-              <ProductCard key={product._id} product={product} />
-            ))}
-          </div>
-          {/* pagination */}
-          <div className="flex items-center justify-center gap-2 my-6">
-            <button
-              onClick={() => setPage(page - 1)}
-              disabled={page === 1}
-              className="bnt">
-              <MoveLeft className="cursor-pointer" />
-            </button>
-
-            <div className="">
-              {paginationPages.map((p) => (
+          {foundData?.result?.length > 0 ? (
+            <>
+              <div className=" px-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {allProducts.map((product) => (
+                  <ProductCard key={product._id} product={product} />
+                ))}
+              </div>
+              {/* pagination */}
+              <div className="flex items-center justify-center gap-2 my-6">
                 <button
-                  onClick={() => setPage(p)}
-                  key={p}
-                  className="btn btn-primary btn-sm mx-2">
-                  {p}
+                  onClick={() => setPage(page - 1)}
+                  disabled={page === 1}
+                  className="bnt">
+                  <MoveLeft className="cursor-pointer" />
                 </button>
-              ))}
+
+                <div className="">
+                  {paginationPages.map((p) => (
+                    <button
+                      onClick={() => setPage(p)}
+                      key={p}
+                      className="btn btn-primary btn-sm mx-2">
+                      {p}
+                    </button>
+                  ))}
+                </div>
+                <button
+                  onClick={() => setPage(page + 1)}
+                  disabled={page === foundData?.totalPage}
+                  className="bnt">
+                  <MoveRight className="cursor-pointer" />
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className="w-full h-full flex justify-center items-center">
+              <h2 className="text-gray-600 ">{`No product found with "${search}"`}</h2>
             </div>
-            <button
-              onClick={() => setPage(page + 1)}
-              disabled={page === foundData?.totalPage}
-              className="bnt">
-              <MoveRight className="cursor-pointer" />
-            </button>
-          </div>
+          )}
         </div>
       </div>
     </div>

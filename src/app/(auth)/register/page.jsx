@@ -1,4 +1,5 @@
 "use client";
+import { useAuth } from "@/hooks/useAuth";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Link from "next/link";
@@ -7,6 +8,7 @@ import React, { Suspense } from "react";
 import { useForm } from "react-hook-form";
 
 export const RegisterForm = () => {
+  const { setUser, loading, setLoading } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
@@ -17,21 +19,30 @@ export const RegisterForm = () => {
     formState: { errors },
   } = useForm();
   const handleRegister = async (data) => {
-    await axios
-      .post(`${process.env.NEXT_PUBLIC_DOMAIN}/register`, data, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        if (res.data.success) {
-          // Cookies.set("token", res.data.token, { expires: 1, path: "/" });
-          router.push(callbackUrl);
-          router.refresh();
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      await axios
+        .post(`${process.env.NEXT_PUBLIC_DOMAIN}/register`, data, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          if (res.data.success) {
+            setUser(res.data.user);
+            router.push(callbackUrl);
+            router.refresh();
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    } finally {
+      setLoading(false);
+    }
   };
+  if (loading) {
+    return <p>Loading user...</p>;
+  }
   return (
     <div className="card-body">
       <h2 className="text-2xl font-bold text-center">Please Register Here!</h2>
@@ -67,7 +78,13 @@ export const RegisterForm = () => {
           {errors.password && (
             <p className="text-red-500 text-sm">Password is required</p>
           )}
-          <button className="btn btn-neutral mt-4">Sign up</button>
+          <button className="btn btn-neutral mt-4">
+            {loading ? (
+              <span className="loading loading-spinner loading-xs"></span>
+            ) : (
+              "Sign up"
+            )}
+          </button>
           <div>
             <p>
               Already have an account please{" "}

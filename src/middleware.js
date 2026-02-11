@@ -14,6 +14,7 @@ export function middleware(request) {
     path.startsWith("/addProduct") ||
     path.startsWith("/listItem") ||
     path.startsWith("/myCart") ||
+    path.startsWith("/myOrders") ||
     path.startsWith("/manageUsers");
 
   const isAdminRoute =
@@ -56,6 +57,7 @@ export const config = {
     "/listItem/:path*",
     "/manageUsers/:path*",
     "/myCart/:path*",
+    "/myOrders/:path*",
     "/login",
     "/register",
   ],

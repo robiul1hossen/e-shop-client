@@ -17,11 +17,15 @@ import {
 import { ArcElement } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import { Bar } from "react-chartjs-2";
+import Image from "next/image";
+import moment from "moment";
+import { motion } from "framer-motion";
 
 const OverView = () => {
   const [totalReviews, setTotalReviews] = useState(0);
   const [cartCount, setCartCount] = useState(0);
   const [userCount, setUserCount] = useState([]);
+  const [ordered, setOrdered] = useState([]);
   const { user } = useAuth();
   const { data: users = 0 } = useQuery({
     queryKey: ["users"],
@@ -30,6 +34,7 @@ const OverView = () => {
       return res.data;
     },
   });
+  console.log(users);
   useEffect(() => {
     const loadTotalReviews = async () => {
       const res = await axiosSecure.get("/products/admin");
@@ -43,10 +48,26 @@ const OverView = () => {
       const res = await axiosSecure.get("/users-stats/admin");
       setUserCount(res.data);
     };
+    const loadOrderedData = async () => {
+      const res = await axiosSecure.get(`/myOrders/${user?.email}`);
+      setOrdered(res.data);
+    };
     loadTotalReviews();
     loadTotalLCarts();
     loadUserCountByMonth();
-  }, []);
+    loadOrderedData();
+  }, [user]);
+
+  const myData = ordered?.flatMap((order) =>
+    order.cartOrderData.map((item) => ({
+      ...item,
+      paidAt: order.paidAt,
+      transactionId: order.transactionId,
+      totalPrice: order.totalPrice,
+    })),
+  );
+  console.log(myData);
+
   // todo: change the data to real data
   const orderStats = {
     total: 100,
@@ -119,9 +140,9 @@ const OverView = () => {
       },
     },
   };
-
+  console.log(myData);
   return user?.role === "admin" ? (
-    <div>
+    <>
       <div className="py-8 text-3xl text-center">
         <Title text1={"QUICK"} text2={"OVERVIEW"} />
       </div>
@@ -198,11 +219,42 @@ const OverView = () => {
           <Pie data={data2} options={options2} />
         </div>
       </div>
-    </div>
+    </>
   ) : (
     <>
+      <div className="py-8 text-3xl text-center">
+        <Title text1={"QUICK"} text2={"OVERVIEW"} />
+      </div>
       <div>
-        <h2>hello</h2>
+        <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
+          {myData.map((order) => (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              key={order._id}
+              className="shadow px-4 py-2 rounded-lg bg-white">
+              <Image
+                width={100}
+                height={100}
+                className="w-25 h-32 object-cover"
+                src={order?.image}
+                alt=""
+              />
+              <p className="text-sm text-gray-500">{order?.productName}</p>
+              {/* <p className="text-sm text-gray-500">${order.price}</p> */}
+              <span className="text-xs text-gray-600">
+                Paid At: {moment(order.paidAt).format("DD-MM-YY")}
+              </span>
+              <p className="text-sm text-gray-500">
+                Quantity: {order.quantity}
+              </p>
+              <p className="text-xs text-gray-600">
+                Transaction Id: {order.transactionId}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </>
   );

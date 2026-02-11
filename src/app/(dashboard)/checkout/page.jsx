@@ -1,8 +1,9 @@
 "use client";
 import Title from "@/components/Title";
 import axiosSecure from "@/lib/axiosSecure";
-import { Images } from "lucide-react";
+import { ArrowRight, Images } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -25,8 +26,8 @@ const Checkout = () => {
   };
 
   return (
-    <div>
-      <div className="mb-10">
+    <div className="flex flex-col md:flex-row gap-5">
+      <div className="mb-10 w-full">
         <div className="py-8 text-xs sm:text-sm md:text-3xl text-center">
           <Title text1={"CHECKOUT"} text2={"PAGE"} />
           {/* <p className=" w-full md:w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
@@ -35,9 +36,7 @@ const Checkout = () => {
           </p> */}
         </div>
         <div className="flex items-center justify-center w-full ">
-          <form
-            onSubmit={handleSubmit(handleCheckout)}
-            className=" w-full md:w-1/2">
+          <form onSubmit={handleSubmit(handleCheckout)} className=" w-full ">
             <fieldset className="fieldset w-full">
               <div className="flex gap-5">
                 <div>
@@ -166,6 +165,36 @@ const Checkout = () => {
               </button>
             </fieldset>
           </form>
+        </div>
+      </div>
+      <div className="w-full items-end">
+        <div className="py-8 text-3xl text-center">
+          <Title text1={"CART"} text2={"TOTALS"} />
+          <div className="">
+            {/* <div className="text-3xl ">
+                <Title text1={"CART"} text2={"TOTALS"} />
+              </div> */}
+            <div className="">
+              <h2 className="text-sm flex justify-between items-center text-gray-700">
+                <span className="font-medium">Subtotal:</span> <span>${0}</span>
+              </h2>
+              <hr className=" text-gray-300 mt-1" />
+              <h2 className="text-sm flex justify-between items-center text-gray-700 mt-6">
+                <span className="font-medium">Shipping Fee:</span>{" "}
+                <span>$10.00</span>
+              </h2>
+              <hr className=" text-gray-300 mt-1" />
+              <h2 className="text-sm flex justify-between items-center text-gray-800 mt-6">
+                <span className="font-bold">Total:</span> <span>${0 + 10}</span>
+              </h2>
+            </div>
+            <Link href="/checkout">
+              <button className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2.5 px-5 rounded-lg transition-all duration-300 shadow-md active:scale-95 cursor-pointer mt-6">
+                Proceed to Checkout
+                <ArrowRight size={16} />
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
